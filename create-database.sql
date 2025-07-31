@@ -1,0 +1,5 @@
+CREATE DATABASE rbproduct;
+
+CREATE USER rb_admin WITH PASSWORD 'RBcmw107';
+
+GRANT ALL PRIVILEGES ON DATABASE rbproduct TO rb_admin;
