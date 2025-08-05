@@ -13,7 +13,7 @@ class Product(models.Model):
   name = models.CharField(max_length=100)
   price = models.DecimalField(decimal_places=2, max_digits=10)
   category = models.CharField(max_length=24)
-  description = models.TextField
+  description = models.TextField()
   dimensions = models.CharField()
   quantity = models.IntegerField(default=0)
   created_at = models.DateTimeField(auto_now_add=True)
@@ -43,7 +43,10 @@ class CustomOrder(models.Model):
 # TODO:: Create Category Model
 
 """
-How does models.ForeignKey Work?
+Make migrations::
+> python manage.py makemigrations
+
+>> How does models.ForeignKey Work? << 
 1. Creates a Many-to-One relation. Creates a column in the db with the specified relations (Id). This case, Cartitem -> Cart(specifically Cart's Id)
 2. Arg1 specifies what the relation is too. Ex: CartItems.cart is related Cart; CartItems.product is related to Product.
 3. related_name refers to the inverse from Cart -> CartItem. 
