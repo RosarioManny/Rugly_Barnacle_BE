@@ -2,20 +2,30 @@ from django.db import models
 
 # To Create an enums or choice 
 PRICES = (
-  ('SM', '$150-$249'),
-  ('MD', '$250-$349'),
-  ('LG', '$350-$449'),
-  ('XL', '$450'),
+  ('3ft', '$150-$249'),
+  ('4ft', '$250-$349'),
+  ('5ft', '$350-$449'),
+  ('6ft +', '$450+'),
 )
-# Create your models here.
 
-class Product(models.Model):
+# 1. TODO *:: Create Category Model
+class Category(models.Model):
+  class Meta: 
+    verbose_name_plural = "Categories"
+  slug = models.SlugField(unique=True)
   name = models.CharField(max_length=100)
+  
+  def __str__(self):
+    return self.name
+  
+# 2. TODO *:: Create Product Model
+class Product(models.Model):
+  name = models.CharField(max_length=100, unique=True)
   price = models.DecimalField(decimal_places=2, max_digits=10)
-  category = models.CharField(max_length=24)
-  description = models.TextField()
-  dimensions = models.CharField()
-  quantity = models.IntegerField(default=0)
+  category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+  description = models.TextField(max_length=400, blank=True, null=True)
+  dimensions = models.CharField(max_length=40)
+  quantity = models.PositiveIntegerField(default=1)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
@@ -23,24 +33,40 @@ class Product(models.Model):
   def __str__(self):
     return self.name
   
-# TODO:: Create Cart Model
+# 3. TODO *:: Create Cart Model
 class Cart(models.Model):   
-  session_key = models.CharField(max_length=48, unique=True)
+  session_key = models.CharField(max_length=48, unique=True, db_index=True)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
-# TODO:: Create CartItem Model
+  def __str__(self):
+    return f"Cart {self.id} - ({self.created_at.date()})"
+
+# 4. TODO*:: Create CartItem Model
 class CartItem(models.Model):
   cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
   product = models.ForeignKey(Product, on_delete=models.CASCADE)
-# TODO:: Create CustomOrder Model
+  added_at = models.DateTimeField(auto_now_add=True)
+  quantity = models.PositiveIntegerField(default=1)
+
+  def __str__(self):
+    return f"{self.quantity}x {self.product.name} item in Cart {self.cart.id} - {self.added_at})"
+  
+# 5. TODO*:: Create CustomOrder Model
 class CustomOrder(models.Model):
-  description = models.CharField
-  email = models.CharField
-  price = models.CharField(max_length=2, choices=PRICES, default=PRICES[0][0])
+  description = models.TextField(max_length=400, blank=True, null=True)
+  email = models.EmailField(max_length=64, null=True)
+  size_with_price = models.CharField(
+    max_length=10, 
+    choices=PRICES, 
+    default=PRICES[0][0], 
+    verbose_name="Rug Size & Price Range"
+  )
   created_at = models.DateTimeField(auto_now_add=True)
-# TODO:: Create Session Model
-# TODO:: Create Category Model
+
+  def __str__(self):
+    return f"Custom order {self.id}: {self.email} - ({self.created_at.date()})"
+
 
 """
 Make migrations::
