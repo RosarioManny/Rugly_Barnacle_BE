@@ -67,7 +67,14 @@ class CustomOrder(models.Model):
   def __str__(self):
     return f"Custom order {self.id}: {self.email} - ({self.created_at.date()})"
 
+# 6. TODO:: Create ProductImage Model
+# class ProductImage(models.Model):
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+#     image = models.ImageField(upload_to='products/')
+#     is_primary = models.BooleanField(default=False)  # Mark the main image
 
+#     def __str__(self):
+#         return f"Image for {self.product.name}"
 """
 Make migrations::
 > python manage.py makemigrations
