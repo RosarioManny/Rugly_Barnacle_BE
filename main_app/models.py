@@ -8,7 +8,8 @@ PRICES = (
   ('6ft +', '$450+'),
 )
 
-# 1. TODO *:: Create Category Model
+# ------------------------------------------------------ CATEGORY ------------------------------------------------------
+
 class Category(models.Model):
   class Meta: 
     verbose_name_plural = "Categories"
@@ -18,7 +19,8 @@ class Category(models.Model):
   def __str__(self):
     return self.name
   
-# 2. TODO *:: Create Product Model
+# ------------------------------------------------------ PRODUCT ------------------------------------------------------
+
 class Product(models.Model):
   name = models.CharField(max_length=100, unique=True)
   price = models.DecimalField(decimal_places=2, max_digits=10)
@@ -32,8 +34,9 @@ class Product(models.Model):
   # Change the name of the display on admin panel
   def __str__(self):
     return self.name
-  
-# 3. TODO *:: Create Cart Model
+
+# ------------------------------------------------------ CART ------------------------------------------------------
+
 class Cart(models.Model):   
   session_key = models.CharField(max_length=48, unique=True, db_index=True)
   created_at = models.DateTimeField(auto_now_add=True)
@@ -42,7 +45,6 @@ class Cart(models.Model):
   def __str__(self):
     return f"Cart {self.id} - ({self.created_at.date()})"
 
-# 4. TODO*:: Create CartItem Model
 class CartItem(models.Model):
   cart = models.ForeignKey(Cart, related_name='items', on_delete=models.CASCADE)
   product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -52,7 +54,8 @@ class CartItem(models.Model):
   def __str__(self):
     return f"{self.quantity}x {self.product.name} item in Cart {self.cart.id} - {self.added_at})"
   
-# 5. TODO*:: Create CustomOrder Model
+# ------------------------------------------------------ CUSTOM ------------------------------------------------------ 
+
 class CustomOrder(models.Model):
   description = models.TextField(max_length=400, blank=True, null=True)
   email = models.EmailField(max_length=64, null=True)
@@ -66,6 +69,8 @@ class CustomOrder(models.Model):
 
   def __str__(self):
     return f"Custom order {self.id}: {self.email} - ({self.created_at.date()})"
+  
+# ------------------------------------------------------ PRODUCT ------------------------------------------------------
 
 # 6. TODO:: Create ProductImage Model
 # class ProductImage(models.Model):
