@@ -29,3 +29,10 @@ class ItemSerializer(serializers.ModelSerializer):
   class Meta:
     model = CartItem
     fields = '__all__'
+
+# CUSTOM 
+class CustomOrderSerializer(serializers.ModelSerializer):
+  
+  class Meta: 
+    model = CustomOrder
+    fields = '__all__'

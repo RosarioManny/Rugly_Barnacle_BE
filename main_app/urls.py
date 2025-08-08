@@ -10,7 +10,8 @@ urlpatterns = [
   path('cart/', CartView.as_view(), name='cart'),
   path('cart/items/', AddtoCartView.as_view(), name='add-to-cart'),
   path('cart/items/<int:id>', CartItemDetailView.as_view(), name='cart-item-detail'),
-
+# CUSTOM ORDER
+  path('custom/', CustomOrderView.as_view(), name='custom-order')
   # TODO :: Create categories/ route
   # TODO :: Create custom/ route
 ]
