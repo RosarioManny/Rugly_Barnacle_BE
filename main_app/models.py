@@ -19,6 +19,12 @@ class Category(models.Model):
   def __str__(self):
     return self.name
   
+
+
+
+class Property(models.Model):
+  name = models.CharField(max_length=32, unique=True)
+  display_name = models.CharField(max_length=32)
 # ------------------------------------------------------ PRODUCT ------------------------------------------------------
 
 class Product(models.Model):
@@ -28,6 +34,7 @@ class Product(models.Model):
   description = models.TextField(max_length=400, blank=True, null=True)
   dimensions = models.CharField(max_length=40)
   quantity = models.PositiveIntegerField(default=1)
+  properties = models.ManyToManyField(Property, blank=True)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 

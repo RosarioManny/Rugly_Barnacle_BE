@@ -1,0 +1,120 @@
+\c rbproduct 
+
+INSERT INTO category (name, slug)
+VALUES ('Rug','rugs')
+VALUES ('Wrist rug','wrist-rugs')
+VALUES ('Mug rug','mug-rugs')
+VALUES ('Mirror rug','mirror-rugs')
+VALUES ('Stickers & more','stickers')
+
+INSERT INTO product (
+    name, 
+    price, 
+    category_id, 
+    description, 
+    dimensions, 
+    quantity,
+    created_at,
+    updated_at
+) VALUES 
+-- PRODUCTS 1-10
+(
+  'Tufted Pixel Gengar Sprite',
+  257,
+  (SELECT id FROM category WHERE slug='rugs'),
+  'From the franchise of Pokemon. A pixel art Gengar sprite rug with ghostly vibes.',
+  '2x2',
+  1,
+  NOW(),
+  NOW(),
+),
+(
+  'Tufted Scooby-Doo dog tag',
+  107,
+  (SELECT id FROM category WHERE slug='rugs'),
+  'From the franchise of Scooby-Doo. Recreation of the Cartoon Network classic Scooby-doo dog tag. ',
+  '2x2',
+  1,
+  NOW(),
+  NOW(),
+),
+(
+  'Pixel Gengar Sprite',
+  257,
+  (SELECT id FROM category WHERE slug='rugs'),
+  'From the franchise of Pokemon. A pixel art Gengar sprite rug. Nonslip-backing',
+  '2x2',
+  1,
+  NOW(),
+  NOW(),
+),
+(
+  'Pixel Gengar Sprite',
+  257,
+  (SELECT id FROM category WHERE slug='rugs'),
+  'From the franchise of Pokemon. A pixel art Gengar sprite rug. Nonslip-backing',
+  '2x2',
+  1,
+  NOW(),
+  NOW(),
+),
+(
+  'Pixel Gengar Sprite',
+  257,
+  (SELECT id FROM category WHERE slug='rugs'),
+  'From the franchise of Pokemon. A pixel art Gengar sprite rug. Nonslip-backing',
+  '2x2',
+  1,
+  NOW(),
+  NOW(),
+),
+(
+  'Pixel Gengar Sprite',
+  257,
+  (SELECT id FROM category WHERE slug='rugs'),
+  'From the franchise of Pokemon. A pixel art Gengar sprite rug. Nonslip-backing',
+  '2x2',
+  1,
+  NOW(),
+  NOW(),
+),
+(
+  'Pixel Gengar Sprite',
+  257,
+  (SELECT id FROM category WHERE slug='rugs'),
+  'From the franchise of Pokemon. A pixel art Gengar sprite rug. Nonslip-backing',
+  '2x2',
+  1,
+  NOW(),
+  NOW(),
+),
+(
+  'Pixel Gengar Sprite',
+  257,
+  (SELECT id FROM category WHERE slug='rugs'),
+  'From the franchise of Pokemon. A pixel art Gengar sprite rug. Nonslip-backing',
+  '2x2',
+  1,
+  NOW(),
+  NOW(),
+),
+(
+  'Pixel Gengar Sprite',
+  257,
+  (SELECT id FROM category WHERE slug='rugs'),
+  'From the franchise of Pokemon. A pixel art Gengar sprite rug. Nonslip-backing',
+  '2x2',
+  1,
+  NOW(),
+  NOW(),
+),
+(
+  'Pixel Gengar Sprite',
+  257,
+  (SELECT id FROM category WHERE slug='rugs'),
+  'From the franchise of Pokemon. A pixel art Gengar sprite rug. Nonslip-backing',
+  '2x2',
+  1,
+  NOW(),
+  NOW(),
+),
