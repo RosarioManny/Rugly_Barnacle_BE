@@ -33,7 +33,7 @@ class Product(models.Model):
 
   # Change the name of the display on admin panel
   def __str__(self):
-    return self.name
+    return f"Id: {self.id} - {self.name}"
 
 # ------------------------------------------------------ CART ------------------------------------------------------
 
@@ -52,7 +52,7 @@ class CartItem(models.Model):
   quantity = models.PositiveIntegerField(default=1)
 
   def __str__(self):
-    return f"{self.quantity}x {self.product.name} item in Cart {self.cart.id} - {self.added_at})"
+    return f"Amount: {self.quantity}x - Product: {self.product.name} - Cart: {self.cart.id} - Date: {self.added_at.month} / {self.added_at.day} / {self.added_at.year}"
   
 # ------------------------------------------------------ CUSTOM ------------------------------------------------------ 
 

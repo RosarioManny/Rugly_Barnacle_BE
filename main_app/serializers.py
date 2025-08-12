@@ -28,7 +28,7 @@ class ItemSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = CartItem
-    fields = '__all__'
+    fields = ['id', 'product', 'quantity']
 
 # CUSTOM 
 class CustomOrderSerializer(serializers.ModelSerializer):
